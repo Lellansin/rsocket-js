@@ -2,7 +2,7 @@
   "name": "rsocket-js",
   "private": true,
   "description": "An implementation of the RSocket protocol: https://github.com/rsocket/rsocket",
-  "version": "0.0.1",
+  "version": "0.0.13",
   "keywords": [
     "reactivesocket",
     "rsocket"
@@ -16,13 +16,15 @@
     "lib/"
   ],
   "scripts": {
-    "build": "NODE_ENV=production node scripts/build.js",
-    "jest": "NODE_ENV=test jest \"$@\"",
+    "build": "cross-env NODE_ENV=production node scripts/build.js",
+    "jest": "cross-env NODE_ENV=test jest \"$@\"",
     "lint": "yarn run lint-prettier && eslint . --cache",
     "lint-prettier": "node scripts/prettier.js lint",
     "prettier": "node scripts/prettier.js write",
     "tck": "yarn run build && node packages/rsocket-tck/build/index.js \"$@\"",
     "simple-cli": "yarn run build && node packages/rsocket-examples/build/SimpleCli.js \"$@\"",
+    "resume-example": "yarn run build && node packages/rsocket-examples/build/ResumeExample.js",
+    "lease-client-example": "yarn run build && node packages/rsocket-examples/build/LeaseClientExample.js \"$@\"",
     "test": "f() { EXIT=0; yarn run typecheck || EXIT=$?; yarn run jest \"$@\" || EXIT=$?; exit $EXIT; }; f",
     "typecheck": "flow check packages/"
   },
@@ -45,13 +47,16 @@
     "babel-runtime": "^6.6.1",
     "buffer": "^5.0.6",
     "chalk": "^1.1.3",
+    "cross-env": "^6.0.3",
     "eslint": "^3.17.1",
     "eslint-config-fb-strict": "^19.0.1",
     "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-flowtype": "^2.30.3",
     "eslint-plugin-jasmine": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prefer-object-spread": "^1.1.0",
     "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-relay": "^1.3.12",
     "fbjs": "^0.8.1",
     "fbjs-scripts": "^0.7.1",
     "flow-bin": "^0.78.0",
